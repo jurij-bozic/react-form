@@ -14,8 +14,8 @@ function App() {
     //live subscription to db changes
     ref.onSnapshot((items) => {
       const data = [];
-      items.forEach((doc) => {
-        data.push(doc.data());
+      items.forEach((document) => {
+        data.push(document.data());
       })
       setPersonData(data);
       setIsLoading(false);
@@ -39,15 +39,17 @@ function App() {
             <h1>Persons List App</h1>
             <br/>
             <PersonsForm />
-            <div>
+            <div style={{ }}>
               <h2>Saved Persons</h2>
               {personData.map((person) => (
-                <div key={person.id}>
-                  <h4>Person name</h4>
-                  <p>{person.first_name} {person.last_name}</p>
-                  <p>Interest: {person.interest}</p>
-                  <br/>
-                </div>
+                <span key={person.id}>
+                  <div className="app-person-card">
+                    <h4>Person name</h4>
+                    <p>{person.first_name} {person.last_name}</p>
+                    <p>Interest: {person.interest}</p>
+                  </div>
+                  <br />
+                </span>
               ))}
             </div>
           </div>
